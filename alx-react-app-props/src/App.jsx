@@ -17,36 +17,6 @@ import UserInfo from './components/UserInfo';
 
 
 function App() {
-  const userData = { name: "Jane Doe", email: "jane.doe@example.com" };
-
-  return <ProfilePage userData={userData} />;
-}
-function App() {
-  const userData = { name: "Jane Doe", email: "jane.doe@example.com" };
-
-  return (
-    <UserContext.Provider value={userData}>
-      <ProfilePage />
-    </UserContext.Provider>
-  );
-}
-function ProfilePage() {
-  return <UserInfo />;
-}
-function UserDetails() {
-  // ✅ Consume the context using useContext
-  const userData = useContext(UserContext);
-
-  return (
-    <div>
-      <p>Name: {userData.name}</p>
-      <p>Email: {userData.email}</p>
-    </div>
-  );
-}
-
-
-function App() {
   const [count, setCount] = useState(0)
 
   return (
@@ -66,6 +36,14 @@ function App() {
             <MainContent />
             <Footer />
         </div>
+         return <ProfilePage userData={userData} />;
+         <UserContext.Provider value={userData}>
+      <ProfilePage />
+    </UserContext.Provider>
+<div>
+      <p>Name: {userData.name}</p>
+      <p>Email: {userData.email}</p>
+    </div>
       <h1>Vite + React</h1>
       <div className="card">
         <button onClick={() => setCount((count) => count + 1)}>
