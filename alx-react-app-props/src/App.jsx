@@ -31,6 +31,9 @@ function App() {
             <MainContent />
             <Footer />
         </div>
+        const userData = { name: "Jane Doe", email: "jane.doe@example.com" };
+
+  return <ProfilePage userData={userData} />;
       <h1>Vite + React</h1>
       <div className="card">
         <button onClick={() => setCount((count) => count + 1)}>
