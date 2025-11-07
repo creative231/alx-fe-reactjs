@@ -14,7 +14,17 @@ import UserInfo from './components/UserInfo';
 
 
 
+function App() {
+  // Define the user data
+  const userData = { name: "Jane Doe", email: "jane.doe@example.com" };
 
+  return (
+    // ✅ Wrap ProfilePage with the provider and pass the data as value
+    <UserContext.Provider value={userData}>
+      <ProfilePage />
+    </UserContext.Provider>
+  );
+}
 
 function App() {
   const [count, setCount] = useState(0)
