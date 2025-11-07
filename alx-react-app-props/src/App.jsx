@@ -46,10 +46,6 @@ function App() {
             <MainContent />
             <Footer />
         </div>
-         return <ProfilePage userData={userData} />;
-         <UserContext.Provider value={userData}>
-      <ProfilePage />
-    </UserContext.Provider>
 <div>
       <p>Name: {userData.name}</p>
       <p>Email: {userData.email}</p>
