@@ -35,9 +35,7 @@ function App() {
             <MainContent />
             <Footer />
         </div>
-        <UserContext.Provider value={userData}>
-      <ProfilePage />
-    </UserContext.Provider>
+        return <ProfilePage userData={userData} />;
       <h1>Vite + React</h1>
       <div className="card">
         <button onClick={() => setCount((count) => count + 1)}>
