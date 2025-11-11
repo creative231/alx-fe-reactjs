@@ -4,10 +4,10 @@ import viteLogo from '/vite.svg'
 import './App.css'
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Navbar from "./components/Navbar";
-import Home from "./components/pages/Home";
-import About from "./components/pages/About";
-import Services from "./components/pages/Services";
-import Contact from "./components/pages/Contact";
+import Home from "./pages/components/Home";
+import About from "./pages/components/About";
+import Services from "./pages/components/Services";
+import Contact from "./pages/components/Contact";
 
 function App() {
   const [count, setCount] = useState(0)
