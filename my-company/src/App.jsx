@@ -3,10 +3,10 @@ import reactLogo from './assets/react.svg'
 import viteLogo from '/vite.svg'
 import './App.css'
 import Navbar from "./components/Navbar";
-import Home from "./components/Home";
-import About from "./components/About";
-import Services from "./components/Services";
-import Contact from "./components/Contact";
+import Home from "./components/pages/Home";
+import About from "./components/pages/About";
+import Services from "./components/pages/Services";
+import Contact from "./components/pages/Contact";
 
 function App() {
   const [count, setCount] = useState(0)
