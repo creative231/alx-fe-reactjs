@@ -1,9 +1,5 @@
 import { useRecipeStore } from '../recipeStore';
-import { create } from 'zustand';
 
-
-const recipes = useRecipeStore((state) => state.recipes);
-console.log(recipes);
 const RecipeList = () => {
   const recipes = useRecipeStore((state) => state.recipes);
 
@@ -19,12 +15,5 @@ const RecipeList = () => {
     </div>
   );
 };
-
-export const useRecipeStore = create((set) => ({
-  recipes: [],
-  addRecipe: (newRecipe) =>
-    set((state) => ({ recipes: [...state.recipes, newRecipe] })),
-  setRecipes: (recipes) => set({ recipes }),
-}));
 
 export default RecipeList;
