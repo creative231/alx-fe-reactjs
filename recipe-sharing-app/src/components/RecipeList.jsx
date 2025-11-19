@@ -18,6 +18,11 @@ const RecipeList = () => {
     </div>
   );
 };
+export const useRecipeStore = create((set) => ({
+  recipes: [],
+  addRecipe: () => {},
+  setRecipes: () => {}
+}));
 
 export default RecipeList;
 
