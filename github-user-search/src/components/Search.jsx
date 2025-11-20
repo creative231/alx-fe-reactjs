@@ -20,78 +20,44 @@ const Search = () => {
       const data = await fetchUserData(username);
       setUser(data);
     } catch (err) {
-      setError("Looks like we can't find the user");
+      // ⛔ Required EXACT message
+      setError("Looks like we cant find the user");
     } finally {
       setLoading(false);
     }
   };
 
   return (
-    <div style={{ width: "400px", margin: "auto", marginTop: "50px" }}>
-      {/* Search Form */}
+    <div>
       <form onSubmit={handleSearch}>
         <input
           type="text"
           placeholder="Enter GitHub username"
           value={username}
           onChange={(e) => setUsername(e.target.value)}
-          style={{
-            width: "100%",
-            padding: "10px",
-            borderRadius: "5px",
-            border: "1px solid #ccc"
-          }}
         />
-        <button
-          type="submit"
-          style={{
-            marginTop: "10px",
-            width: "100%",
-            padding: "10px",
-            borderRadius: "5px",
-            backgroundColor: "#24292e",
-            color: "white",
-            border: "none",
-            cursor: "pointer"
-          }}
-        >
-          Search
-        </button>
+
+        <button type="submit">Search</button>
       </form>
 
       {/* Conditional Rendering */}
-      <div style={{ marginTop: "20px" }}>
+      <div>
         {loading && <p>Loading...</p>}
 
-        {error && <p style={{ color: "red" }}>{error}</p>}
+        {error && <p>{error}</p>}
 
         {user && (
-          <div
-            style={{
-              marginTop: "20px",
-              padding: "15px",
-              border: "1px solid #ddd",
-              borderRadius: "10px",
-              textAlign: "center"
-            }}
-          >
-            <img
-              src={user.avatar_url}
-              alt={user.login}
-              style={{ width: "120px", borderRadius: "50%" }}
-            />
+          <div>
+            <img src={user.avatar_url} alt={user.login} width="100" />
             <h3>{user.name || user.login}</h3>
-            <a
-              href={user.html_url}
-              target="_blank"
-              rel="noopener noreferrer"
-              style={{ color: "blue" }}
-            >
+
+            <a href={user.html_url} target="_blank" rel="noreferrer">
               Visit GitHub Profile
             </a>
           </div>
         )}
       </div>
+
     </div>
   );
 };
