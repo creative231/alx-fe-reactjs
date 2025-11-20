@@ -11,6 +11,11 @@ const DeleteRecipeButton = ({ recipeId }) => {
     if (window.confirm('Delete this recipe?')) {
       deleteRecipe(recipeId);
       navigate('/');
+      // inside any component
+const addRecipe = useRecipeStore(s => s.addRecipe);
+addRecipe({ id: 1, title: 'Test', description: 'x' });
+console.log(useRecipeStore.getState().recipes);
+
     }
   };
 
