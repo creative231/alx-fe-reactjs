@@ -5,12 +5,20 @@ const AddRecipeForm = () => {
   const addRecipe = useRecipeStore((state) => state.addRecipe);
   const [title, setTitle] = useState('');
   const [description, setDescription] = useState('');
+  const [error, setError] = useState('');
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    addRecipe({ id: Date.now(), title, description });
+    const trimmedTitle = title.trim();
+    if (!trimmedTitle) {
+      setError('Title is required');
+      return;
+    }
+
+    addRecipe({ id: Date.now(), title: trimmedTitle, description: description.trim() });
     setTitle('');
     setDescription('');
+    setError('');
   };
 
   return (
@@ -28,7 +36,10 @@ const AddRecipeForm = () => {
         onChange={(e) => setDescription(e.target.value)}
       />
       <br /><br />
-      <button type="submit">Add Recipe</button>
+      <button type="submit" disabled={!title.trim()}>Add Recipe</button>
+      {error && (
+        <div style={{ color: 'crimson', marginTop: '8px' }}>{error}</div>
+      )}
     </form>
   );
 };
