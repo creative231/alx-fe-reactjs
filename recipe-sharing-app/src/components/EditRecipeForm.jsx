@@ -12,16 +12,17 @@ const EditRecipeForm = () => {
   const updateRecipe = useRecipeStore((s) => s.updateRecipe);
   const navigate = useNavigate();
 
-  const [title, setTitle] = useState('');
-  const [description, setDescription] = useState('');
-
   // prefill when recipe is available
-  useEffect(() => {
-    if (recipe) {
-      setTitle(recipe.title || '');
-      setDescription(recipe.description || '');
-    }
-  }, [recipe]);
+const [title, setTitle] = useState('');
+const [description, setDescription] = useState('');
+
+useEffect(() => {
+  if (recipe) {
+    setTitle(recipe.title ?? '');
+    setDescription(recipe.description ?? '');
+  }
+}, [recipe?.id]); // only run when recipe changes
+
 
   if (!recipe) {
     return <p>Recipe not found.</p>;
