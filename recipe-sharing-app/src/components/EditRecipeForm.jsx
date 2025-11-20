@@ -1,44 +1,55 @@
-import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+// src/components/EditRecipeForm.jsx
+import { useState, useEffect } from 'react';
+import { useNavigate, useParams } from 'react-router-dom';
 import { useRecipeStore } from '../recipeStore';
 
-const EditRecipeForm = ({ recipe }) => {
+const EditRecipeForm = () => {
+  const { id } = useParams();
+  const recipeId = Number(id);
+  const recipe = useRecipeStore((s) =>
+    s.recipes.find((r) => r.id === recipeId)
+  );
   const updateRecipe = useRecipeStore((s) => s.updateRecipe);
-  const [title, setTitle] = useState(recipe?.title || '');
-  const [description, setDescription] = useState(recipe?.description || '');
-  const [error, setError] = useState('');
   const navigate = useNavigate();
 
-  // The form receives `recipe` as a prop and will be remounted when
-  // the parent renders it with a different `key` (see RecipeDetails).
-  // This avoids setting state inside an effect which can trigger lint
-  // warnings about cascading renders.
+  const [title, setTitle] = useState('');
+  const [description, setDescription] = useState('');
+
+  // prefill when recipe is available
+  useEffect(() => {
+    if (recipe) {
+      setTitle(recipe.title || '');
+      setDescription(recipe.description || '');
+    }
+  }, [recipe]);
+
+  if (!recipe) {
+    return <p>Recipe not found.</p>;
+  }
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    const t = title.trim();
-    if (!t) {
-      setError('Title is required');
-      return;
-    }
-    updateRecipe({ id: recipe.id, title: t, description: description.trim() });
-    navigate(`/recipes/${recipe.id}`);
+    updateRecipe(recipeId, { title, description });
+    navigate(`/recipes/${recipeId}`);
   };
 
-  if (!recipe) return null;
-
   return (
-    <form onSubmit={handleSubmit} style={{ marginTop: '1rem' }}>
+    <form onSubmit={handleSubmit}>
+      <h2>Edit Recipe</h2>
       <div>
-        <input type="text" value={title} onChange={(e) => setTitle(e.target.value)} />
+        <label>
+          Title<br />
+          <input value={title} onChange={(e) => setTitle(e.target.value)} />
+        </label>
       </div>
-      <div style={{ marginTop: '8px' }}>
-        <textarea value={description} onChange={(e) => setDescription(e.target.value)} />
+      <div>
+        <label>
+          Description<br />
+          <textarea value={description} onChange={(e) => setDescription(e.target.value)} />
+        </label>
       </div>
-      <div style={{ marginTop: '8px' }}>
-        <button type="submit" disabled={!title.trim()}>Save</button>
-      </div>
-      {error && <div style={{ color: 'crimson' }}>{error}</div>}
+      <button type="submit">Save</button>
+      <button type="button" onClick={() => navigate(-1)}>Cancel</button>
     </form>
   );
 };
