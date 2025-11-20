@@ -38,7 +38,14 @@ function App() {
       <header>
         <h1><Link to="/">Recipe Sharing App</Link></h1>
       </header>
+       <div style={{ maxWidth: "600px", margin: "0 auto" }}>
+      <h1>Recipe Sharing App</h1>
 
+      <SearchBar />
+      <AddRecipeForm />
+      <RecipeList />
+    </div>
+    
       <Routes>
         <Route path="/" element={
           <>
