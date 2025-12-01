@@ -28,6 +28,32 @@ const AddRecipeForm = () => {
       setSuccess(true);
       console.log("New Recipe Submitted:", { title, ingredients, instructions });
 
+      const validate = () => {
+  const newErrors = {};
+  if (!title.trim()) newErrors.title = "Title is required.";
+  if (!ingredients.trim()) newErrors.ingredients = "Ingredients are required.";
+  else if (ingredients.split("\n").length < 2)
+    newErrors.ingredients = "Please list at least 2 ingredients.";
+  if (!instructions.trim()) newErrors.instructions = "Preparation steps are required.";
+  else if (instructions.split("\n").length < 2)
+    newErrors.instructions = "Please list at least 2 steps.";
+
+  return newErrors;
+};
+
+// Usage inside handleSubmit
+const handleSubmit = (e) => {
+  e.preventDefault();
+  const newErrors = validate();
+  if (Object.keys(newErrors).length > 0) {
+    setErrors(newErrors);
+    setSuccess(false);
+  } else {
+    // submit logic
+  }
+};
+
+
       // Clear form
       setTitle("");
       setIngredients("");

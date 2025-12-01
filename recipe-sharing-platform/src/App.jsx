@@ -8,6 +8,7 @@ import HomePage from "./components/HomePage";
 import RecipeDetail from "./components/RecipeDetail";
 import AddRecipeForm from "./components/AddRecipeForm";
 
+
 function App() {
   const [count, setCount] = useState(0)
 
@@ -16,6 +17,9 @@ function App() {
       <div>
         <a href="https://vite.dev" target="_blank">
           <img src={viteLogo} className="logo" alt="Vite logo" />
+           <div className="p-4">
+      <h1 className="text-3xl font-bold text-indigo-600">Hello, Recipe App!</h1>
+    </div>
         </a>
         <a href="https://react.dev" target="_blank">
           <img src={reactLogo} className="logo react" alt="React logo" />
