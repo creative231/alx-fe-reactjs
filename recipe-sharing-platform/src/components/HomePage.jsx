@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import recipeData from "../data.json";
-
+import { Link } from "react-router-dom";
 const HomePage = () => {
   const [recipes, setRecipes] = useState([]);
 
@@ -35,6 +35,14 @@ const HomePage = () => {
                 href="#"
                 className="mt-4 inline-block text-indigo-500 hover:text-indigo-600 font-medium transition-colors duration-200"
               >
+                import { Link } from "react-router-dom";
+
+<a
+  as={Link}
+  to={`/recipe/${recipe.id}`}
+  className="mt-4 inline-block text-indigo-500 hover:text-indigo-600 font-medium transition-colors duration-200"
+>
+</a>
                 View Recipe
               </a>
             </div>
