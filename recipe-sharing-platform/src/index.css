@@ -34,9 +34,9 @@ h1 {
   font-size: 3.2em;
   line-height: 1.1;
 }
-@import "tailwindcss/preflight";
-@import "tailwindcss";
-@import "tailwindcss/utilities";
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
 button {
   border-radius: 8px;
   border: 1px solid transparent;
