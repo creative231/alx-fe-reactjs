@@ -43,6 +43,12 @@ const HomePage = () => {
   className="mt-4 inline-block text-indigo-500 hover:text-indigo-600 font-medium transition-colors duration-200"
 >
 </a>
+<Link
+  to="/add-recipe"
+  className="inline-block mb-6 text-indigo-500 hover:text-indigo-600 font-medium"
+>
+  + Add New Recipe
+</Link>
                 View Recipe
               </a>
             </div>
