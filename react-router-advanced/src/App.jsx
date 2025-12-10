@@ -3,12 +3,12 @@ import reactLogo from './assets/react.svg'
 import viteLogo from '/vite.svg'
 import './App.css'
 import { Routes, Route } from "react-router-dom";
-import Home from "./components/Home.jsx";
-import Profile from "./components/Profile.jsx";
-import ProfileDetails from "./components/ProfileDetails.jsx";
-import ProfileSettings from "./components/ProfileSettings.jsx";
-import User from "./components/User.jsx";
-import ProtectedRoute from "./components/ProtectedRoute.jsx";
+import Home from "./components/Home";
+import Profile from "./components/Profile";
+import ProfileDetails from "./components/ProfileDetails";
+import ProfileSettings from "./components/ProfileSettings";
+import User from "./components/User";
+import ProtectedRoute from "./components/ProtectedRoute";
 
 function App() {
   const [count, setCount] = useState(0)
@@ -24,10 +24,9 @@ function App() {
         </a>
       </div>
       <h1>Vite + React</h1>
-       <Routes>
+      <Routes>
       <Route path="/" element={<Home />} />
 
-      {/* Protected route with nested routes */}
       <Route
         path="profile"
         element={
@@ -40,10 +39,8 @@ function App() {
         <Route path="settings" element={<ProfileSettings />} />
       </Route>
 
-      {/* Dynamic route */}
       <Route path="user/:userId" element={<User />} />
 
-      {/* Catch-all route */}
       <Route path="*" element={<h1>404 - Page Not Found</h1>} />
     </Routes>
       <div className="card">
