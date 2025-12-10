@@ -1,55 +1,44 @@
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import * as Yup from "yup";
 
+const validationSchema = Yup.object({
+  username: Yup.string().required("Username required"),
+  email: Yup.string().email("Invalid email").required("Email required"),
+  password: Yup.string()
+    .min(6, "Password must be 6+ chars")
+    .required("Password required")
+});
+
 const FormikForm = () => {
-  const initialValues = {
-    username: "",
-    email: "",
-    password: ""
-  };
-
-  const validationSchema = Yup.object({
-    username: Yup.string().required("Username is required"),
-    email: Yup.string()
-      .email("Invalid email format")
-      .required("Email is required"),
-    password: Yup.string()
-      .min(6, "Password must be at least 6 characters")
-      .required("Password is required")
-  });
-
-  const handleSubmit = (values, { setSubmitting, resetForm, setStatus }) => {
-    setStatus("Submitting...");
-
-    // Simulate API call
-    setTimeout(() => {
-      setStatus("Registration successful!");
-      resetForm();
-      setSubmitting(false);
-    }, 1500);
-  };
-
   return (
-    <div style={{ maxWidth: "400px", margin: "auto", padding: "20px" }}>
-      <h2>Register (Formik + Yup)</h2>
+    <div>
+      <h2>Registration Form (Formik + Yup)</h2>
 
       <Formik
-        initialValues={initialValues}
+        initialValues={{ username: "", email: "", password: "" }}
         validationSchema={validationSchema}
-        onSubmit={handleSubmit}
+        onSubmit={(values, { setSubmitting, resetForm, setStatus }) => {
+          setStatus("Submitting...");
+
+          setTimeout(() => {
+            setStatus("Registration successful!");
+            resetForm();
+            setSubmitting(false);
+          }, 1500);
+        }}
       >
         {({ status, isSubmitting }) => (
           <Form>
-            <label>Username:</label>
-            <Field type="text" name="username" />
+            <label>Username</label>
+            <Field name="username" />
             <ErrorMessage name="username" component="div" style={{ color: "red" }} />
 
-            <label>Email:</label>
-            <Field type="email" name="email" />
+            <label>Email</label>
+            <Field name="email" type="email" />
             <ErrorMessage name="email" component="div" style={{ color: "red" }} />
 
-            <label>Password:</label>
-            <Field type="password" name="password" />
+            <label>Password</label>
+            <Field name="password" type="password" />
             <ErrorMessage name="password" component="div" style={{ color: "red" }} />
 
             <button type="submit" disabled={isSubmitting}>
