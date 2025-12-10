@@ -8,7 +8,6 @@ import Profile from "./components/Profile";
 import User from "./components/User";
 import BlogPost from "./components/BlogPost";
 import ProtectedRoute from "./components/ProtectedRoute";
-import { BrowserRouter, Routes, Route } from "react-router-dom";
 
 function App() {
   const [count, setCount] = useState(0)
@@ -24,9 +23,8 @@ function App() {
         </a>
       </div>
       <h1>Vite + React</h1>
-        <Routes>
+         <Routes>
       <Route path="/" element={<Home />} />
-
       <Route
         path="profile/*"
         element={
@@ -35,13 +33,8 @@ function App() {
           </ProtectedRoute>
         }
       />
-
-      {/* Existing dynamic route */}
       <Route path="user/:userId" element={<User />} />
-
-      {/* New dynamic blog route */}
       <Route path="blog/:id" element={<BlogPost />} />
-
       <Route path="*" element={<h1>404 - Page Not Found</h1>} />
     </Routes>
     <BrowserRouter>
