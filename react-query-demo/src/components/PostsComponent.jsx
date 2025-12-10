@@ -8,8 +8,6 @@ const fetchPosts = async (page = 1) => {
   const { data } = await axios.get(
     `https://jsonplaceholder.typicode.com/posts?_limit=10&_page=${page}`
   );
-  // Simulate error for demonstration (uncomment to test)
-  // if (page === 3) throw new Error("Failed to fetch posts!");
   return data;
 };
 
@@ -25,7 +23,9 @@ const PostsComponent = () => {
     refetch,
   } = useQuery(["posts", page], () => fetchPosts(page), {
     keepPreviousData: true,        // Keep old data while fetching new page
-    refetchOnWindowFocus: true,    // Refetch when tab/window is focused
+    refetchOnWindowFocus: true,    // Refetch when window/tab is focused
+    staleTime: 5000,               // Data stays fresh for 5 seconds
+    cacheTime: 300000,             // Cache data for 5 minutes (even if unused)
   });
 
   return (
@@ -35,7 +35,7 @@ const PostsComponent = () => {
       {/* Error Handling */}
       {isError && <p style={{ color: "red" }}>Error: {error.message}</p>}
 
-      {/* Loading State */}
+      {/* Loading state */}
       {isLoading ? (
         <p>Loading posts...</p>
       ) : (
@@ -70,6 +70,10 @@ const PostsComponent = () => {
           Refetch
         </button>
       </div>
+
+      <p style={{ marginTop: "0.5rem", fontSize: "0.9rem", color: "gray" }}>
+        Data is considered fresh for {5000 / 1000} seconds. Cached for {300000 / 1000 / 60} minutes.
+      </p>
     </div>
   );
 };
