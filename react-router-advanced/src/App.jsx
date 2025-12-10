@@ -6,6 +6,7 @@ import { Routes, Route } from "react-router-dom";
 import Home from "./components/Home";
 import Profile from "./components/Profile";
 import User from "./components/User";
+import BlogPost from "./components/BlogPost";
 import ProtectedRoute from "./components/ProtectedRoute";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 
@@ -23,12 +24,11 @@ function App() {
         </a>
       </div>
       <h1>Vite + React</h1>
-       <Routes>
+        <Routes>
       <Route path="/" element={<Home />} />
 
-      {/* Protected Profile route */}
       <Route
-        path="profile/*" // Note the "/*" for nested routing
+        path="profile/*"
         element={
           <ProtectedRoute>
             <Profile />
@@ -36,8 +36,11 @@ function App() {
         }
       />
 
-      {/* Dynamic user route */}
+      {/* Existing dynamic route */}
       <Route path="user/:userId" element={<User />} />
+
+      {/* New dynamic blog route */}
+      <Route path="blog/:id" element={<BlogPost />} />
 
       <Route path="*" element={<h1>404 - Page Not Found</h1>} />
     </Routes>
