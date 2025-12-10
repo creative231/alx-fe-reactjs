@@ -2,6 +2,9 @@ import { useState } from 'react'
 import reactLogo from './assets/react.svg'
 import viteLogo from '/vite.svg'
 import './App.css'
+import { QueryClient, QueryClientProvider } from "react-query";
+import PostsComponent from "./components/PostsComponent";
+import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
 
 function App() {
   const [count, setCount] = useState(0)
@@ -17,6 +20,13 @@ function App() {
         </a>
       </div>
       <h1>Vite + React</h1>
+      <QueryClientProvider client={queryClient}>
+      <PostsComponent />
+    </QueryClientProvider>
+    <QueryClientProvider client={queryClient}>
+  <PostsComponent />
+  <ReactQueryDevtools initialIsOpen={false} />
+</QueryClientProvider>
       <div className="card">
         <button onClick={() => setCount((count) => count + 1)}>
           count is {count}
