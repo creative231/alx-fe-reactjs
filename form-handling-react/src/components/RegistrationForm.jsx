@@ -27,7 +27,7 @@ const RegistrationForm = () => {
         <label>Username</label>
         <input
           name="username"
-          value={username}        {/* REQUIRED BY CHECKER */}
+          value={username}
           onChange={(e) => setUsername(e.target.value)}
         />
 
@@ -35,7 +35,7 @@ const RegistrationForm = () => {
         <input
           name="email"
           type="email"
-          value={email}           {/* REQUIRED BY CHECKER */}
+          value={email}
           onChange={(e) => setEmail(e.target.value)}
         />
 
@@ -43,7 +43,7 @@ const RegistrationForm = () => {
         <input
           name="password"
           type="password"
-          value={password}        {/* REQUIRED BY CHECKER */}
+          value={password}
           onChange={(e) => setPassword(e.target.value)}
         />
 
