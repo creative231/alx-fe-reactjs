@@ -5,10 +5,9 @@ import './App.css'
 import { Routes, Route } from "react-router-dom";
 import Home from "./components/Home";
 import Profile from "./components/Profile";
-import ProfileDetails from "./components/ProfileDetails";
-import ProfileSettings from "./components/ProfileSettings";
 import User from "./components/User";
 import ProtectedRoute from "./components/ProtectedRoute";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
 
 function App() {
   const [count, setCount] = useState(0)
@@ -27,22 +26,24 @@ function App() {
        <Routes>
       <Route path="/" element={<Home />} />
 
+      {/* Protected Profile route */}
       <Route
-        path="profile"
+        path="profile/*" // Note the "/*" for nested routing
         element={
           <ProtectedRoute>
             <Profile />
           </ProtectedRoute>
         }
-      >
-        <Route path="details" element={<ProfileDetails />} />
-        <Route path="settings" element={<ProfileSettings />} />
-      </Route>
+      />
 
+      {/* Dynamic user route */}
       <Route path="user/:userId" element={<User />} />
 
       <Route path="*" element={<h1>404 - Page Not Found</h1>} />
     </Routes>
+    <BrowserRouter>
+      <Routes> ... </Routes>
+    </BrowserRouter>
       <div className="card">
         <button onClick={() => setCount((count) => count + 1)}>
           count is {count}
