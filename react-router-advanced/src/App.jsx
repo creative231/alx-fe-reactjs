@@ -6,7 +6,7 @@ import { Routes, Route } from "react-router-dom";
 import Home from "./components/Home";
 import Profile from "./components/Profile";
 import User from "./components/User";
-import BlogPost from "./components/BlogPost";
+import BlogPost from "./components/BlogPost"; // Import BlogPost
 import ProtectedRoute from "./components/ProtectedRoute";
 
 function App() {
