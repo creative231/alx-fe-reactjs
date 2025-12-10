@@ -1,6 +1,6 @@
 // src/components/Profile.jsx
 import React from "react";
-import { Routes, Route, Outlet, Link } from "react-router-dom";
+import { Routes, Route, Link, Outlet } from "react-router-dom";
 import ProfileDetails from "./ProfileDetails";
 import ProfileSettings from "./ProfileSettings";
 
@@ -19,8 +19,7 @@ const Profile = () => {
         <Route path="settings" element={<ProfileSettings />} />
       </Routes>
 
-      {/* Outlet for any deeper nested routes */}
-      <Outlet />
+      <Outlet /> {/* For deeper nested routes */}
     </div>
   );
 };

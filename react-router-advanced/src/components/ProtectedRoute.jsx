@@ -1,13 +1,12 @@
 // src/components/ProtectedRoute.jsx
+import React from "react";
 import { Navigate } from "react-router-dom";
 
 const ProtectedRoute = ({ children }) => {
-  const isAuthenticated = false; // Simulate login status
-
+  const isAuthenticated = false; // Simulate login
   if (!isAuthenticated) {
-    return <Navigate to="/" replace />; // Redirect to home if not logged in
+    return <Navigate to="/" replace />;
   }
-
   return children;
 };
 
