@@ -1,35 +1,21 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import React, { useState, useContext } from 'react';
+import reactLogo from './assets/react.svg';
+import viteLogo from '/vite.svg';
+import './App.css';
 import WelcomeMessage from './components/WelcomeMessage';
 import Header from './components/Header';
 import MainContent from './components/MainContent';
 import Footer from './components/Footer';
 import UserProfile from './components/UserProfile';
 import ProfilePage from './components/ProfilePage';
-import { useContext } from 'react';
 import UserContext from './components/UserContext';
 import UserInfo from './components/UserInfo';
 
 
-
 function App() {
-  // Define the user data
   const userData = { name: "Jane Doe", email: "jane.doe@example.com" };
-
-  return (
-    // ✅ Wrap ProfilePage with the provider and pass the data as value
-    <UserContext.Provider value={userData}>
-      <ProfilePage />
-    </UserContext.Provider>
-  );
-}
-
-function App() {
   const [count, setCount] = useState(0)
-
-  return (
+ return (
     <>
       <div>
         <a href="https://vite.dev" target="_blank">
@@ -58,6 +44,9 @@ function App() {
         <p>
           Edit <code>src/App.jsx</code> and save to test HMR
         </p>
+        <UserContext.Provider value={userData}>
+      <ProfilePage />
+    </UserContext.Provider>
       </div>
       <p className="read-the-docs">
         Click on the Vite and React logos to learn more
