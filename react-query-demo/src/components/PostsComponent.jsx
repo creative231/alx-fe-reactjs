@@ -1,52 +1,53 @@
-import { useQuery } from "react-query";
+// src/components/PostsComponent.jsx
+import React, { useState } from "react";
+import { useQuery } from "@tanstack/react-query";
+import axios from "axios";
 
-const fetchPosts = async () => {
-  const res = await fetch("https://jsonplaceholder.typicode.com/posts");
-  if (!res.ok) {
-    throw new Error("Failed to fetch posts");
-  }
-  return res.json();
+const fetchPosts = async (page = 1) => {
+  const { data } = await axios.get(
+    `https://jsonplaceholder.typicode.com/posts?_limit=10&_page=${page}`
+  );
+  return data;
 };
 
 const PostsComponent = () => {
-  // React Query's useQuery
-  const {
-    data,
-    isLoading,
-    isError,
-    error,
-    refetch,
-    isFetching
-  } = useQuery("posts", fetchPosts, {
-    staleTime: 5000, // keeps data fresh for 5 seconds
-    cacheTime: 1000 * 60 * 5, // 5-minute cache storage
-  });
+  const [page, setPage] = useState(1);
+
+  const { data, isLoading, isError, isFetching } = useQuery(
+    ["posts", page],
+    () => fetchPosts(page),
+    {
+      keepPreviousData: true, // keeps old data while fetching new page
+      refetchOnWindowFocus: true, // refetches when window is focused
+    }
+  );
+
+  if (isLoading) return <p>Loading...</p>;
+  if (isError) return <p>Error fetching posts</p>;
 
   return (
-    <div style={{ padding: "20px" }}>
-      <h1>React Query - Posts</h1>
-
-      <button onClick={() => refetch()}>
-        {isFetching ? "Refreshing..." : "Refetch Posts"}
-      </button>
-
-      {/* Loading State */}
-      {isLoading && <p>Loading posts...</p>}
-
-      {/* Error State */}
-      {isError && <p style={{ color: "red" }}>Error: {error.message}</p>}
-
-      {/* Data Loaded */}
-      {data && (
-        <ul>
-          {data.slice(0, 10).map((post) => (
-            <li key={post.id}>
-              <strong>{post.title}</strong>
-              <p>{post.body}</p>
-            </li>
-          ))}
-        </ul>
-      )}
+    <div>
+      <h1>Posts (Page {page})</h1>
+      {isFetching && <p>Updating...</p>}
+      <ul>
+        {data.map((post) => (
+          <li key={post.id}>{post.title}</li>
+        ))}
+      </ul>
+      <div style={{ marginTop: "1rem" }}>
+        <button
+          onClick={() => setPage((old) => Math.max(old - 1, 1))}
+          disabled={page === 1}
+        >
+          Previous
+        </button>
+        <button
+          onClick={() => setPage((old) => old + 1)}
+          style={{ marginLeft: "1rem" }}
+        >
+          Next
+        </button>
+      </div>
     </div>
   );
 };
