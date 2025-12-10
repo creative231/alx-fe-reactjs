@@ -1,3 +1,4 @@
+// src/components/TodoList.jsx
 import React, { useState } from "react";
 
 const TodoList = () => {
@@ -10,14 +11,8 @@ const TodoList = () => {
 
   const addTodo = (e) => {
     e.preventDefault();
-    if (newTodo.trim() === "") return;
-
-    const todo = {
-      id: Date.now(),
-      text: newTodo.trim(),
-      completed: false,
-    };
-    setTodos([...todos, todo]);
+    if (!newTodo.trim()) return;
+    setTodos([...todos, { id: Date.now(), text: newTodo, completed: false }]);
     setNewTodo("");
   };
 
