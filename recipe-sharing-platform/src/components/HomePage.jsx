@@ -15,7 +15,14 @@ const HomePage = () => {
         Recipe Sharing Platform
       </h1>
 
+
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+      {/* <Link
+        to="/add-recipe"
+        className="inline-block mb-6 text-indigo-500 hover:text-indigo-600 font-medium"
+      >
+        + Add New Recipe
+      </Link> */}
         {recipes.map((recipe) => (
           <div
             key={recipe.id}
@@ -30,25 +37,15 @@ const HomePage = () => {
               <h2 className="text-xl font-semibold mb-2 text-gray-900 dark:text-white">
                 {recipe.title}
               </h2>
-              <p className="text-gray-700 dark:text-gray-300">{recipe.summary}</p>
+              <p className="text-gray-700 dark:text-gray-300">
+                {recipe.summary}
+              </p>
+
               <a
-                href="#"
+                as={Link}
+                to={`/recipe/${recipe.id}`}
                 className="mt-4 inline-block text-indigo-500 hover:text-indigo-600 font-medium transition-colors duration-200"
               >
-                import { Link } from "react-router-dom";
-
-<a
-  as={Link}
-  to={`/recipe/${recipe.id}`}
-  className="mt-4 inline-block text-indigo-500 hover:text-indigo-600 font-medium transition-colors duration-200"
->
-</a>
-<Link
-  to="/add-recipe"
-  className="inline-block mb-6 text-indigo-500 hover:text-indigo-600 font-medium"
->
-  + Add New Recipe
-</Link>
                 View Recipe
               </a>
             </div>

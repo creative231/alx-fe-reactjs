@@ -5,8 +5,8 @@ import './App.css'
 import React from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import HomePage from "./components/HomePage";
-import RecipeDetail from "./components/RecipeDetail";
-import AddRecipeForm from "./components/AddRecipeForm";
+// import RecipeDetail from "./components/RecipeDetail";
+// import AddRecipeForm from "./components/AddRecipeForm";
 
 
 function App() {
@@ -25,7 +25,7 @@ function App() {
           <img src={reactLogo} className="logo react" alt="React logo" />
         </a>
       </div>
-      <HomePage />;
+      <HomePage />
       <h1>Vite + React</h1>
       <div className="card">
         <button onClick={() => setCount((count) => count + 1)}>
@@ -35,13 +35,13 @@ function App() {
           Edit <code>src/App.jsx</code> and save to test HMR
         </p>
       </div>
-       <Routes>
+       {/* <Routes>
         <Route path="/" element={<HomePage />} />
         <Route path="/recipe/:id" element={<RecipeDetail />} />
       </Routes>
       <Route path="/" element={<HomePage />} />
         <Route path="/recipe/:id" element={<RecipeDetail />} />
-        <Route path="/add-recipe" element={<AddRecipeForm />} />
+        <Route path="/add-recipe" element={<AddRecipeForm />} /> */}
       <p className="read-the-docs">
         Click on the Vite and React logos to learn more
       </p>

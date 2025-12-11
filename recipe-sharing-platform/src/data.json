@@ -1,27 +1,9 @@
 [
-  {
-    "id": 1,
-    "title": "Spaghetti Carbonara",
-    "summary": "A classic Italian pasta dish with eggs, cheese, bacon, and black pepper.",
-    "image": "https://via.placeholder.com/150"
-  },
-  {
-    "id": 2,
-    "title": "Chicken Tikka Masala",
-    "summary": "Chunks of grilled chicken (tikka) cooked in a smooth buttery & creamy tomato based gravy.",
-    "image": "https://via.placeholder.com/150"
-  },
-  {
-    "id": 3,
-    "title": "Avocado Toast",
-    "summary": "Toasted bread topped with ripe avocado, olive oil, and a pinch of salt.",
-    "image": "https://via.placeholder.com/150"
-  },
    {
     "id": 1,
     "title": "Spaghetti Carbonara",
     "summary": "A classic Italian pasta dish with eggs, cheese, bacon, and black pepper.",
-    "image": "https://via.placeholder.com/600x400",
+    "image": "https://images.unsplash.com/photo-1574969903809-3f7a1668ceb0?q=80&w=870&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
     "ingredients": [
       "200g spaghetti",
       "100g pancetta or bacon",
@@ -41,7 +23,7 @@
     "id": 2,
     "title": "Chicken Tikka Masala",
     "summary": "Chunks of grilled chicken cooked in a smooth creamy tomato gravy.",
-    "image": "https://via.placeholder.com/600x400",
+    "image": "https://images.unsplash.com/photo-1680529672551-16132239d69b?q=80&w=870&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
     "ingredients": [
       "500g chicken",
       "1 cup yogurt",
@@ -56,6 +38,53 @@
       "Sauté onions, add tomatoes, and simmer.",
       "Add chicken and cream, cook for 10 more minutes.",
       "Serve hot with rice or naan."
+    ]
+  },
+  {
+    "id": 3,
+    "title": "Vegetable Stir Fry",
+    "summary": "A quick and healthy stir-fry with mixed vegetables and a savory sauce.",
+    "image": "https://images.unsplash.com/photo-1504674900247-0877df9cc836?q=80&w=870&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+    "ingredients": [
+      "1 bell pepper",
+      "1 carrot",
+      "1 broccoli head",
+      "100g snap peas",
+      "2 tbsp soy sauce",
+      "1 tbsp sesame oil",
+      "2 cloves garlic"
+    ],
+    "instructions": [
+      "Chop all vegetables into bite-sized pieces.",
+      "Heat sesame oil in a wok or large pan.",
+      "Add garlic and sauté for 30 seconds.",
+      "Add vegetables and stir-fry for 5-7 minutes.",
+      "Add soy sauce and cook for another 2 minutes. Serve hot."
+    ]
+  },
+  {
+    "id": 4,
+    "title": "Chocolate Chip Cookies",
+    "summary": "Classic chewy chocolate chip cookies with a golden-brown edge.",
+    "image": "https://images.unsplash.com/photo-1638180756397-b1dcf50e7a42?q=80&w=870&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+    "ingredients": [
+      "1 cup butter",
+      "1 cup sugar",
+      "1 cup brown sugar",
+      "2 eggs",
+      "2 tsp vanilla extract",
+      "3 cups flour",
+      "1 tsp baking soda",
+      "1/2 tsp salt",
+      "2 cups chocolate chips"
+    ],
+    "instructions": [
+      "Preheat oven to 350°F (175°C).",
+      "Cream together butter and sugars.",
+      "Beat in eggs and vanilla.",
+      "Combine dry ingredients and gradually add to wet mixture.",
+      "Stir in chocolate chips.",
+      "Drop by spoonfuls onto baking sheet and bake for 10-12 minutes."
     ]
   }
 ]
