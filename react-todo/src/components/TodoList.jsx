@@ -29,9 +29,9 @@ const TodoList = () => {
       <h2>Todo List</h2>
       <form onSubmit={addTodo}>
         <input
-          placeholder="Add new todo"
           value={newTodo}
           onChange={(e) => setNewTodo(e.target.value)}
+          placeholder="Add new todo"
         />
         <button type="submit">Add</button>
       </form>
@@ -40,10 +40,7 @@ const TodoList = () => {
           <li
             key={todo.id}
             onClick={() => toggleTodo(todo.id)}
-            style={{
-              textDecoration: todo.completed ? "line-through" : "none",
-              cursor: "pointer",
-            }}
+            style={{ textDecoration: todo.completed ? "line-through" : "none" }}
           >
             {todo.text}{" "}
             <button
