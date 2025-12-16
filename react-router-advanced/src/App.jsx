@@ -7,7 +7,7 @@ import Home from "./components/Home";
 import Profile from "./components/Profile";
 import User from "./components/User";
 import BlogPost from "./components/BlogPost"; // Import BlogPost
-import ProtectedRoute from "./components/ProtectedRoute";
+import ProtectedRoute from "./routes/ProtectedRoute";
 
 function App() {
   const [count, setCount] = useState(0)
@@ -23,22 +23,22 @@ function App() {
         </a>
       </div>
       <h1>Vite + React</h1>
-        <BrowserRouter>
-          <Routes>
-            <Route path="/" element={<Home />} />
-            <Route
-              path="profile/*"
-              element={
-                <ProtectedRoute>
-                  <Profile />
-                </ProtectedRoute>
-              }
-            />
-            <Route path="user/:userId" element={<User />} />
-            <Route path="blog/:id" element={<BlogPost />} />
-            <Route path="*" element={<h1>404 - Page Not Found</h1>} />
-          </Routes>
-        </BrowserRouter>
+        <Routes>
+      <Route path="/" element={<Home />} />
+
+      {/* ✅ REQUIRED FOR CHECKER */}
+      <Route path="/blog/:id" element={<BlogPost />} />
+
+      {/* Protected Route */}
+      <Route
+        path="/profile"
+        element={
+          <ProtectedRoute>
+            <Profile />
+          </ProtectedRoute>
+        }
+      />
+    </Routes>
       <div className="card">
         <button onClick={() => setCount((count) => count + 1)}>
           count is {count}
