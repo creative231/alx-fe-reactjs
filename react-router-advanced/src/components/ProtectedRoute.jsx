@@ -1,11 +1,13 @@
 // src/components/ProtectedRoute.jsx
-import React from "react";
 import { Navigate } from "react-router-dom";
 
+const isAuthenticated = () => {
+  return localStorage.getItem("auth") === "true";
+};
+
 const ProtectedRoute = ({ children }) => {
-  const isAuthenticated = false; // Simulate login
-  if (!isAuthenticated) {
-    return <Navigate to="/" replace />;
+  if (!isAuthenticated()) {
+    return <Navigate to="/login" replace />;
   }
   return children;
 };
