@@ -16,14 +16,12 @@ const TodoList = () => {
 
   const toggleTodo = (id) => {
     setTodos(
-      todos.map((todo) =>
-        todo.id === id ? { ...todo, completed: !todo.completed } : todo
-      )
+      todos.map((t) => (t.id === id ? { ...t, completed: !t.completed } : t))
     );
   };
 
   const deleteTodo = (id) => {
-    setTodos(todos.filter((todo) => todo.id !== id));
+    setTodos(todos.filter((t) => t.id !== id));
   };
 
   return (
@@ -31,9 +29,9 @@ const TodoList = () => {
       <h2>Todo List</h2>
       <form onSubmit={addTodo}>
         <input
+          placeholder="Add new todo"
           value={newTodo}
           onChange={(e) => setNewTodo(e.target.value)}
-          placeholder="Add new todo"
         />
         <button type="submit">Add</button>
       </form>
