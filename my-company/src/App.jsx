@@ -8,6 +8,8 @@ import Home from "./components/pages/Home";
 import About from "./components/pages/About";
 import Services from "./components/pages/Services";
 import Contact from "./components/pages/Contact";
+import Contact from './components/Contact';
+
 
 function App() {
   const [count, setCount] = useState(0)
