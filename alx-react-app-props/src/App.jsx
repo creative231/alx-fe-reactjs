@@ -8,7 +8,7 @@ import MainContent from './components/MainContent';
 import Footer from './components/Footer';
 import UserProfile from './components/UserProfile';
 import ProfilePage from './components/ProfilePage';
-import UserContext from './components/UserContext';
+import UserContext from './UserContext';
 import UserInfo from './components/UserInfo';
 
 
