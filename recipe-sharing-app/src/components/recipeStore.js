@@ -2,54 +2,47 @@ import create from 'zustand';
 
 export const useRecipeStore = create((set) => ({
   recipes: [],
+  favorites: [],
+  recommendations: [],
 
-  // Search term for filtering
-  searchTerm: '',
-
-  // Filtered recipes array
-  filteredRecipes: [],
-
-  // Add a recipe
+  // Add a new recipe
   addRecipe: (newRecipe) =>
     set((state) => ({
       recipes: [...state.recipes, newRecipe],
-      filteredRecipes: [...state.recipes, newRecipe].filter((r) =>
-        r.title.toLowerCase().includes(state.searchTerm.toLowerCase())
-      ),
     })),
 
   // Update a recipe
   updateRecipe: (id, updatedData) =>
-    set((state) => {
-      const updatedRecipes = state.recipes.map((r) =>
+    set((state) => ({
+      recipes: state.recipes.map((r) =>
         r.id === id ? { ...r, ...updatedData } : r
-      );
-      return {
-        recipes: updatedRecipes,
-        filteredRecipes: updatedRecipes.filter((r) =>
-          r.title.toLowerCase().includes(state.searchTerm.toLowerCase())
-        ),
-      };
-    }),
+      ),
+    })),
 
   // Delete a recipe
   deleteRecipe: (id) =>
-    set((state) => {
-      const updatedRecipes = state.recipes.filter((r) => r.id !== id);
-      return {
-        recipes: updatedRecipes,
-        filteredRecipes: updatedRecipes.filter((r) =>
-          r.title.toLowerCase().includes(state.searchTerm.toLowerCase())
-        ),
-      };
-    }),
-
-  // Set search term
-  setSearchTerm: (term) =>
     set((state) => ({
-      searchTerm: term,
-      filteredRecipes: state.recipes.filter((r) =>
-        r.title.toLowerCase().includes(term.toLowerCase())
-      ),
+      recipes: state.recipes.filter((r) => r.id !== id),
+      favorites: state.favorites.filter((fid) => fid !== id),
     })),
+
+  // Favorites management
+  addFavorite: (recipeId) =>
+    set((state) => ({
+      favorites: [...new Set([...state.favorites, recipeId])],
+    })),
+
+  removeFavorite: (recipeId) =>
+    set((state) => ({
+      favorites: state.favorites.filter((id) => id !== recipeId),
+    })),
+
+  // Generate mock recommendations
+  generateRecommendations: () =>
+    set((state) => {
+      const recommended = state.recipes.filter(
+        (r) => !state.favorites.includes(r.id) && Math.random() > 0.5
+      );
+      return { recommendations: recommended };
+    }),
 }));
