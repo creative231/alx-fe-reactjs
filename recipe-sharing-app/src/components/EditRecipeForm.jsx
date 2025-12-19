@@ -1,37 +1,30 @@
-import { useState } from "react";
-import { useRecipeStore } from "./recipeStore";
+import { useState } from 'react';
+import { useRecipeStore } from './recipeStore';
 
-const EditRecipeForm = ({ recipeId }) => {
-  const recipe = useRecipeStore((state) =>
-    state.recipes.find((r) => r.id === recipeId)
-  );
+const EditRecipeForm = ({ recipe }) => {
   const updateRecipe = useRecipeStore((state) => state.updateRecipe);
-
-  // Initialize only once (no effect needed)
-  const [title, setTitle] = useState(() => recipe?.title || "");
-  const [description, setDescription] = useState(
-    () => recipe?.description || ""
-  );
+  const [title, setTitle] = useState(recipe.title);
+  const [description, setDescription] = useState(recipe.description);
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    updateRecipe(recipeId, { title, description });
+    updateRecipe(recipe.id, { title, description });
   };
 
   return (
-    <form onSubmit={handleSubmit}>
+    <form onSubmit={handleSubmit} style={{ marginTop: '20px' }}>
       <input
         type="text"
         value={title}
         onChange={(e) => setTitle(e.target.value)}
+        style={{ display: 'block', margin: '10px 0', padding: '5px', width: '300px' }}
       />
-
       <textarea
         value={description}
         onChange={(e) => setDescription(e.target.value)}
+        style={{ display: 'block', margin: '10px 0', padding: '5px', width: '300px', height: '80px' }}
       />
-
-      <button type="submit">Save</button>
+      <button type="submit" style={{ padding: '5px 10px' }}>Update Recipe</button>
     </form>
   );
 };

@@ -11,39 +11,43 @@ import AddRecipeForm from "./components/AddRecipeForm";
 import RecipeDetails from "./components/RecipeDetails";
 import recipeStore from "./recipeStore";
 
+
 function App() {
-  const [count, setCount] = useState(0);
-
   return (
-    <BrowserRouter>
-      <div>
-        <header style={{ padding: "1rem", textAlign: "center" }}>
-          <h1>
-            <Link to="/">Recipe Sharing App</Link>
-          </h1>
-        </header>
+    <Router>
+      <div style={{ padding: '20px', fontFamily: 'Arial, sans-serif' }}>
+        <h1>Recipe Sharing App</h1>
+        <nav style={{ marginBottom: '20px' }}>
+          <Link to="/" style={{ marginRight: '10px' }}>Home</Link>
+        </nav>
 
-        <div style={{ maxWidth: "600px", margin: "0 auto", padding: "1rem" }}>
-          <Routes>
-            <Route
-              path="/"
-              element={
-                <>
-                  <SearchBar />
-                  <AddRecipeForm />
-                  <RecipeList />
-                </>
-              }
-            />
-
-            <Route path="/recipes/:id" element={<RecipeDetails />} />
-
-            <Route path="*" element={<p>Page not found</p>} />
-          </Routes>
-        </div>
+        <Routes>
+          <Route
+            path="/"
+            element={
+              <>
+                <AddRecipeForm />
+                <RecipeList />
+              </>
+            }
+          />
+          <Route
+            path="/recipe/:id"
+            element={
+              <RecipeDetailsWrapper />
+            }
+          />
+        </Routes>
       </div>
-    </BrowserRouter>
+    </Router>
   );
 }
+
+// Wrapper to extract recipeId from URL
+import { useParams } from 'react-router-dom';
+const RecipeDetailsWrapper = () => {
+  const { id } = useParams();
+  return <RecipeDetails recipeId={parseInt(id)} />;
+};
 
 export default App;
