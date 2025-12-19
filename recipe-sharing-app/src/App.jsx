@@ -9,6 +9,7 @@ import SearchBar from "./components/SearchBar";
 import RecipeList from "./components/RecipeList";
 import AddRecipeForm from "./components/AddRecipeForm";
 import RecipeDetails from "./components/RecipeDetails";
+import recipeStore from "./recipeStore";
 
 function App() {
   const [count, setCount] = useState(0);
