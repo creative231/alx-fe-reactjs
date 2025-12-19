@@ -2,16 +2,17 @@ import { useRecipeStore } from './recipeStore';
 import { useMemo } from 'react';
 
 const FavoritesList = () => {
+  // Get raw store values
   const { recipes, favorites } = useRecipeStore(state => ({
     recipes: state.recipes,
     favorites: state.favorites,
   }));
 
-  // Memoize the mapped favorites array
+  // Memoize derived favoriteRecipes array
   const favoriteRecipes = useMemo(() => {
     return favorites
       .map(id => recipes.find(r => r.id === id))
-      .filter(Boolean); // remove undefined if recipe not found
+      .filter(Boolean); // remove undefined if some recipe missing
   }, [favorites, recipes]);
 
   if (favoriteRecipes.length === 0) return <p>No favorites yet!</p>;
