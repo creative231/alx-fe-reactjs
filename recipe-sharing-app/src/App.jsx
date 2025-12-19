@@ -49,11 +49,11 @@ function App() {
   );
 }
 
-// Wrapper to extract recipeId from URL
-import { useParams } from 'react-router-dom';
-const RecipeDetailsWrapper = () => {
-  const { id } = useParams();
-  return <RecipeDetails recipeId={parseInt(id)} />;
-};
+// // Wrapper to extract recipeId from URL
+// import { useParams } from 'react-router-dom';
+// const RecipeDetailsWrapper = () => {
+//   const { id } = useParams();
+//   return <RecipeDetails recipeId={parseInt(id)} />;
+// };
 
 export default App;
