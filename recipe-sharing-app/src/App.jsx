@@ -3,12 +3,12 @@ import reactLogo from "./assets/react.svg";
 import viteLogo from "/vite.svg";
 import "./App.css";
 
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom';
 import SearchBar from "./components/SearchBar";
 import RecipeList from "./components/RecipeList";
 import AddRecipeForm from "./components/AddRecipeForm";
 import RecipeDetails from "./components/RecipeDetails";
-import recipeStore from "./recipeStore";
+import { useRecipeStore } from './recipeStore'; // ✅ matches the named export
 import RecipeDetailsWrapper from './components/RecipeDetailsWrapper';
 import FavoritesList from './components/FavoritesList';
 import RecommendationsList from './components/RecommendationsList';

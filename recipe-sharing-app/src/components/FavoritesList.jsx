@@ -1,30 +1,28 @@
 import { useRecipeStore } from './recipeStore';
+import { useMemo } from 'react';
 
 const FavoritesList = () => {
-  const favorites = useRecipeStore((state) =>
-    state.favorites.map((id) => state.recipes.find((r) => r.id === id))
-  );
-  const removeFavorite = useRecipeStore((state) => state.removeFavorite);
+  const { recipes, favorites } = useRecipeStore(state => ({
+    recipes: state.recipes,
+    favorites: state.favorites,
+  }));
 
-  if (favorites.length === 0) return <p>No favorites yet.</p>;
+  // Memoize the mapped favorites array
+  const favoriteRecipes = useMemo(() => {
+    return favorites
+      .map(id => recipes.find(r => r.id === id))
+      .filter(Boolean); // remove undefined if recipe not found
+  }, [favorites, recipes]);
+
+  if (favoriteRecipes.length === 0) return <p>No favorites yet!</p>;
 
   return (
     <div>
       <h2>My Favorites</h2>
-      {favorites.map((recipe) => (
-        <div
-          key={recipe.id}
-          style={{
-            border: '1px solid #ccc',
-            padding: '10px',
-            margin: '10px 0',
-          }}
-        >
+      {favoriteRecipes.map(recipe => (
+        <div key={recipe.id}>
           <h3>{recipe.title}</h3>
           <p>{recipe.description}</p>
-          <button onClick={() => removeFavorite(recipe.id)}>
-            Remove from Favorites
-          </button>
         </div>
       ))}
     </div>
