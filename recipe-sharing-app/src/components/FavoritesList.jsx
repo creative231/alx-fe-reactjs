@@ -1,5 +1,18 @@
-import { useRecipeStore } from './recipeStore';
-import { useMemo } from 'react';
+import React, { useMemo } from 'react';
+
+// Mock implementation of useRecipeStore
+const useRecipeStore = (selector) => {
+  const state = {
+    recipes: [
+      { id: 1, title: 'Recipe 1', description: 'Delicious recipe 1' },
+      { id: 2, title: 'Recipe 2', description: 'Tasty recipe 2' },
+      { id: 3, title: 'Recipe 3', description: 'Yummy recipe 3' },
+    ],
+    favorites: [1, 2],  // Example favorites
+  };
+
+  return selector(state);
+};
 
 const FavoritesList = () => {
   // Get raw store values
@@ -8,7 +21,7 @@ const FavoritesList = () => {
     favorites: state.favorites,
   }));
 
-  // Memoize derived favoriteRecipes array
+  // Memoize the derived favoriteRecipes array
   const favoriteRecipes = useMemo(() => {
     return favorites
       .map(id => recipes.find(r => r.id === id))
